@@ -18,7 +18,7 @@
 (require 'compile)
 (ido-mode t)
 (menu-bar-mode -1)
-(normal-erase-is-backspace-mode 1)
+(normal-erase-is-backspace-mode 0)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (setq column-number-mode t)
@@ -76,9 +76,51 @@
 (add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
 (add-to-list 'auto-mode-alist '("\\.jade$" . jade-mode))
 
+;; ============ extras ====================
+
+(defun iwb ()
+  "indent whole buffer"
+  (interactive)
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max) nil))
+;;  (untabify (point-min) (point-max)))
+(global-set-key [f12] 'iwb)
+
+
+;; ========= scala mode repo =============
 (require 'package)
 (add-to-list 'package-archives
-  '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
+;; ========= install and configure move text ====================
+(unless (package-installed-p 'move-text)
+  (package-refresh-contents) (package-install 'move-text))
+
+(require 'move-text)
+(global-set-key [M-up] 'move-text-up)
+(global-set-key [M-down] 'move-text-down)
+
+;; =========== install and configure scala-mode =====================
+
+(unless (package-installed-p 'scala-mode2)
+  (package-refresh-contents) (package-install 'scala-mode2))
+
+;; =========== install and configure multiple cursors =================
+
+(unless (package-installed-p 'multiple-cursors)
+  (package-refresh-contents) (package-install 'multiple-cursors))
+
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key "\C-n" 'mc/mark-next-like-this)
+(global-set-key "\C-b" 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+;; =========== install and configure yasnippet =================
+
+(unless (package-installed-p 'yasnippet)
+  (package-refresh-contents) (package-install 'yasnippet))
+(require 'yasnippet)
+(yas-global-mode 1)
 
