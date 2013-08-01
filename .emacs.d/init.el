@@ -124,3 +124,8 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 
+;; ================= fiplr ====================
+(unless (package-installed-p 'fiplr)
+  (package-refresh-contents) (package-install 'fiplr))
+(require 'fiplr)
+(global-set-key (kbd "C-x f") 'fiplr-find-file)
