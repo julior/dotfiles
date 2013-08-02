@@ -124,3 +124,29 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 
+;; =========== install and configure fiplr : file finder  =======================
+(unless (package-installed-p 'fiplr)
+  (package-refresh-contents) (package-install 'fiplr))
+(require 'fiplr)
+(global-set-key (kbd "C-x f") 'fiplr-find-file)
+
+;; =============== color themes ===================
+(unless (package-installed-p 'color-theme-solarized)
+  (package-refresh-contents) (package-install 'color-theme-solarized))
+
+;; ================= multiweb-mode =============
+(unless (package-installed-p 'multi-web-mode)
+  (package-refresh-contents) (package-install 'multi-web-mode))
+(require 'multi-web-mode)
+(setq mweb-default-major-mode 'html-mode)
+(setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
+                  (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
+                  (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
+(setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
+(multi-web-global-mode 1)
+
+;; ============= nxml ==================
+(unless (package-installed-p 'nxml)
+  (package-refresh-contents) (package-install 'nxml))
+
+
