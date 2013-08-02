@@ -124,7 +124,7 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 
-;; =========== install and configure fiplr : file finder  =======================
+;; ================= fiplr ====================
 (unless (package-installed-p 'fiplr)
   (package-refresh-contents) (package-install 'fiplr))
 (require 'fiplr)
@@ -148,5 +148,4 @@
 ;; ============= nxml ==================
 (unless (package-installed-p 'nxml)
   (package-refresh-contents) (package-install 'nxml))
-
 
