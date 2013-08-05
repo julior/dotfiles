@@ -153,3 +153,6 @@
 (unless (package-installed-p 'browse-url)
   (package-refresh-contents) (package-install 'browse-url))
 
+;; ============ magit ==================
+(unless (package-installed-p 'magit)
+  (package-refresh-contents) (package-install 'magit))
