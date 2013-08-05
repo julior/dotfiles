@@ -149,3 +149,7 @@
 (unless (package-installed-p 'nxml)
   (package-refresh-contents) (package-install 'nxml))
 
+;; ============ browse url ============
+(unless (package-installed-p 'browse-url)
+  (package-refresh-contents) (package-install 'browse-url))
+
