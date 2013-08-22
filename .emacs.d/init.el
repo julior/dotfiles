@@ -115,7 +115,7 @@
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key "\C-n" 'mc/mark-next-like-this)
 (global-set-key "\C-b" 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-c C-a") 'mc/mark-all-like-this)
 
 ;; =========== install and configure yasnippet =================
 
@@ -129,7 +129,8 @@
   (package-refresh-contents) (package-install 'fiplr))
 (require 'fiplr)
 (global-set-key (kbd "C-x f") 'fiplr-find-file)
-
+(setq fiplr-ignored-globs '((directories (".git" ".svn" "target"))
+                            (files ("*.jpg" "*.png" "*.zip" "*~"))))
 ;; =============== color themes ===================
 (unless (package-installed-p 'color-theme-solarized)
   (package-refresh-contents) (package-install 'color-theme-solarized))
@@ -156,3 +157,6 @@
 ;; ============ magit ==================
 (unless (package-installed-p 'magit)
   (package-refresh-contents) (package-install 'magit))
+(require 'magit)
+(global-set-key (kbd "C-c g") 'magit-status)
+(global-set-key (kbd "C-c c") 'magit-checkout)
