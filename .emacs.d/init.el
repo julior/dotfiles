@@ -160,3 +160,17 @@
 (require 'magit)
 (global-set-key (kbd "C-c g") 'magit-status)
 (global-set-key (kbd "C-c c") 'magit-checkout)
+
+;; ============== wrap region ===================
+
+(unless (package-installed-p 'wrap-region)
+  (package-refresh-contents) (package-install 'wrap-region))
+(require 'wrap-region)
+(wrap-region-mode t)
+
+;; ================ auto-complete ================
+(unless (package-installed-p 'auto-complete)
+  (package-refresh-contents) (package-install 'auto-complete))
+(unless (package-installed-p 'ac-dabbrev)
+  (package-refresh-contents) (package-install 'ac-dabbrev))
+(global-auto-complete-mode t)
