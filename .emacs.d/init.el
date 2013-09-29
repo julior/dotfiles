@@ -160,3 +160,11 @@
 (require 'magit)
 (global-set-key (kbd "C-c g") 'magit-status)
 (global-set-key (kbd "C-c c") 'magit-checkout)
+
+;; ========== xml formatting ===================
+(defun xml-format ()
+  (interactive)
+  (save-excursion
+    (shell-command-on-region (mark) (point) "xmllint --format -" (buffer-name) t)
+  )
+)
