@@ -180,4 +180,22 @@
   (package-refresh-contents) (package-install 'auto-complete))
 (unless (package-installed-p 'ac-dabbrev)
   (package-refresh-contents) (package-install 'ac-dabbrev))
+(require 'auto-complete)
 (global-auto-complete-mode t)
+
+;; =============== zoom in zoom out ======================
+(global-set-key [C-mouse-4] 'text-scale-increase)
+(global-set-key [C-mouse-5] 'text-scale-decrease)
+
+
+;; ============= tramp : remote file edit =======================
+(unless (package-installed-p 'tramp)
+  (package-refresh-contents) (package-install 'tramp))
+(require 'tramp)
+(setq tramp-default-method "ftp")
+
+;; ============== keep backups in separate dir ===================
+(setq backup-directory-alist '(("." . "~/.emacs-bakups")))
+
+;; ============== add time stamp ======================
+(add-hook 'before-save-hook 'time-stamp)
