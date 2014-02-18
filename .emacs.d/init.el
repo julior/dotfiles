@@ -221,7 +221,7 @@
   (package-refresh-contents) (package-install 'fiplr))
 (require 'fiplr)
 (global-set-key (kbd "C-x f") 'fiplr-find-file)
-(setq fiplr-ignored-globs '((directories (".git" ".svn" "target"))
+(setq fiplr-ignored-globs '((directories (".git" ".svn" "target" "build"))
                             (files ("*.jpg" "*.png" "*.zip" "*~"))))
 ;; =============== color themes ===================
 (unless (package-installed-p 'color-theme-solarized)
