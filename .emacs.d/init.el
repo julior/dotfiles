@@ -230,7 +230,7 @@
   (package-refresh-contents) (package-install 'fiplr))
 (require 'fiplr)
 (global-set-key (kbd "C-x f") 'fiplr-find-file)
-(setq fiplr-ignored-globs '((directories (".git" ".svn" "target" ".idea"))
+(setq fiplr-ignored-globs '((directories (".git" ".svn" "target" ".idea" "build"))
                             (files ("*.jpg" "*.png" "*.zip" "*~"))))
 ;; =============== color themes ===================
 (unless (package-installed-p 'color-theme-solarized)
@@ -250,6 +250,7 @@
 ;; ============= nxml ==================
 (unless (package-installed-p 'nxml)
   (package-refresh-contents) (package-install 'nxml))
+(setq nxml-slash-auto-complete-flag t)
 
 ;; ============ browse url ============
 (unless (package-installed-p 'browse-url)
@@ -276,6 +277,10 @@
 (require 'wrap-region)
 (wrap-region-mode t)
 
+;; ================ auto-complete ================
+(unless (package-installed-p 'auto-complete)
+  (package-refresh-contents) (package-install 'auto-complete))
+(unless (package-installed-p 'ac-dabbrev)
 ;; ================ auto-complete ================
 (unless (package-installed-p 'auto-complete)
   (package-refresh-contents) (package-install 'auto-complete))

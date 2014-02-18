@@ -176,10 +176,10 @@ set -o noclobber
 
 # 2.2) Listing, directories, and motion
 alias ll="ls -alrtF --color"
-alias la="ls -A"
-alias l="ls -CF"
-alias lt='ls -ltr'
-alias lh='ls -lh'
+alias la="ls -A --color"
+alias l="ls -CF --color"
+alias lt='ls -ltr --color'
+alias lh='ls -lh --color'
 alias dir='ls --color=auto --format=vertical'
 alias vdir='ls --color=auto --format=long'
 alias m='less'
@@ -189,6 +189,8 @@ alias md='mkdir'
 alias cl='clear'
 alias du='du -ch --max-depth=1'
 alias treeacl='tree -A -C -L 2'
+
+alias ssh='TERM=xterm ssh'
 
 # 2.3) Text and editor commands
 # alias em='emacs -nw'     # No X11 windows
