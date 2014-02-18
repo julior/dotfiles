@@ -281,10 +281,6 @@
 (unless (package-installed-p 'auto-complete)
   (package-refresh-contents) (package-install 'auto-complete))
 (unless (package-installed-p 'ac-dabbrev)
-;; ================ auto-complete ================
-(unless (package-installed-p 'auto-complete)
-  (package-refresh-contents) (package-install 'auto-complete))
-(unless (package-installed-p 'ac-dabbrev)
   (package-refresh-contents) (package-install 'ac-dabbrev))
 (require 'auto-complete)
 (global-auto-complete-mode t)
@@ -292,7 +288,6 @@
 ;; =============== zoom in zoom out ======================
 (global-set-key [C-mouse-4] 'text-scale-increase)
 (global-set-key [C-mouse-5] 'text-scale-decrease)
-
 
 ;; ============= tramp : remote file edit =======================
 (unless (package-installed-p 'tramp)
@@ -303,11 +298,6 @@
 ;; ============== add time stamp ======================
 (add-hook 'before-save-hook 'time-stamp)
 
-;; ============== keep backups in temp dir =================
-(setq backup-directory-alist
-          `((".*" . ,temporary-file-directory)))
-    (setq auto-save-file-name-transforms
-          `((".*" ,temporary-file-directory t)))
 ;; =============== disable lock files ====================
 (setq create-lockfiles nil) 
 
