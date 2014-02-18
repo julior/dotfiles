@@ -230,7 +230,7 @@
   (package-refresh-contents) (package-install 'fiplr))
 (require 'fiplr)
 (global-set-key (kbd "C-x f") 'fiplr-find-file)
-(setq fiplr-ignored-globs '((directories (".git" ".svn" "target"))
+(setq fiplr-ignored-globs '((directories (".git" ".svn" "target" ".idea"))
                             (files ("*.jpg" "*.png" "*.zip" "*~"))))
 ;; =============== color themes ===================
 (unless (package-installed-p 'color-theme-solarized)
@@ -295,8 +295,14 @@
 (require 'tramp)
 (setq tramp-default-method "ftp")
 
-;; ============== keep backups in separate dir ===================
-(setq backup-directory-alist '(("." . "~/.emacs-bakups")))
-
 ;; ============== add time stamp ======================
 (add-hook 'before-save-hook 'time-stamp)
+
+;; ============== keep backups in temp dir =================
+(setq backup-directory-alist
+          `((".*" . ,temporary-file-directory)))
+    (setq auto-save-file-name-transforms
+          `((".*" ,temporary-file-directory t)))
+;; =============== disable lock files ====================
+(setq create-lockfiles nil) 
+
