@@ -241,6 +241,7 @@
 ;; ============= nxml ==================
 (unless (package-installed-p 'nxml)
   (package-refresh-contents) (package-install 'nxml))
+(setq nxml-slash-auto-complete-flag t)
 
 ;; ============ browse url ============
 (unless (package-installed-p 'browse-url)
