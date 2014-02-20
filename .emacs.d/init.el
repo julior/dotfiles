@@ -301,3 +301,8 @@
 ;; =============== disable lock files ====================
 (setq create-lockfiles nil) 
 
+;; ============== markdown mode =====================
+(unless (package-installed-p 'markdown-mode)
+  (package-refresh-contents) (package-install 'markdown-mode))
+
+
