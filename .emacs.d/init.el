@@ -305,4 +305,6 @@
 (unless (package-installed-p 'markdown-mode)
   (package-refresh-contents) (package-install 'markdown-mode))
 
+;; ============ auto revet buffers ===============
+(global-auto-revert-mode t)
 
