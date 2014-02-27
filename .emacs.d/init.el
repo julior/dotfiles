@@ -18,7 +18,7 @@
 (require 'compile)
 (ido-mode t)
 (menu-bar-mode -1)
-(normal-erase-is-backspace-mode 0)
+(normal-erase-is-backspace-mode 1)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (setq column-number-mode t)
@@ -307,5 +307,12 @@
 
 ;; ============= auto revert buffers if changed in disk ===============
 (global-auto-revert-mode t)
+
+;; ============== ensime mode for scala  =====================
+;; (unless (package-installed-p 'ensime)
+;;   (package-refresh-contents) (package-install 'ensime))
+;; (require 'ensime)
+;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+
 
 
