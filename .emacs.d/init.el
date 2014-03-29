@@ -305,6 +305,7 @@
 (unless (package-installed-p 'markdown-mode)
   (package-refresh-contents) (package-install 'markdown-mode))
 
-;; ============ auto revet buffers ===============
+;; ============= auto revert buffers if changed in disk ===============
 (global-auto-revert-mode t)
+
 

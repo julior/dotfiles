@@ -195,8 +195,10 @@ alias ssh='TERM=xterm ssh'
 # 2.3) Text and editor commands
 # alias em='emacs -nw'     # No X11 windows
 # alias eqq='emacs -nw -Q' # No config and no X11
-alias em='emacsclient -a ""'
+# alias emf='emacsclient -c -a ""'
 alias emc='emacsclient -t -a ""'
+emw() { emacsclient -c -a "" "$@" & }
+
 export EDITOR='emacsclient -a ""'
 #export EDITOR='emacs -nw'
 #export VISUAL='emacs -nw' 
