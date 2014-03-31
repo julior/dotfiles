@@ -70,6 +70,7 @@
 ;; put the following line in your ~/.tmux.conf:
 ;;   setw -g xterm-keys on
 (if (getenv "TMUX")
+    (message "running inside TMUX mapping keys...")
     (progn
       (let ((x 2) (tkey ""))
 	(while (<= x 8)
@@ -299,7 +300,7 @@
 (add-hook 'before-save-hook 'time-stamp)
 
 ;; =============== disable lock files ====================
-(setq create-lockfiles nil) 
+(setq create-lockfiles nil)
 
 ;; ============== markdown mode =====================
 (unless (package-installed-p 'markdown-mode)
@@ -314,5 +315,9 @@
 ;; (require 'ensime)
 ;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
+;; ============= duplicate line shortcut ====================
+(global-set-key (kbd "C-c d") (kbd "C-a C-SPC C-n M-w C-y"))
 
-
+;; ============== scala evaluator ===========================
+(load "scala-repl.el")
+(global-set-key (kbd "C-e") 'eval-scala)
