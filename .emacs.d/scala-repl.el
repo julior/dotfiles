@@ -17,7 +17,7 @@
       display-buffer-pop-up-window
       display-buffer-pop-up-frame)
      (reusable-frames . 0)
-     (window-height . 8) (window-width . nil)     
+     (window-height . 12) (window-width . nil)     
    )
   )
   ;;focus in buffer

@@ -234,8 +234,11 @@
 (setq fiplr-ignored-globs '((directories (".git" ".svn" "target" ".idea" "build"))
                             (files ("*.jpg" "*.png" "*.zip" "*~"))))
 ;; =============== color themes ===================
-(unless (package-installed-p 'color-theme-solarized)
-  (package-refresh-contents) (package-install 'color-theme-solarized))
+(require 'color-theme)
+(color-theme-initialize)
+(color-theme-dark-laptop)
+;; (unless (package-installed-p 'color-theme-select)
+;;   (package-refresh-contents) (package-install 'color-theme-select))
 
 ;; ================= multiweb-mode =============
 (unless (package-installed-p 'multi-web-mode)
