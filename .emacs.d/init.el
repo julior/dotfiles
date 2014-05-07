@@ -333,3 +333,9 @@
 (unless (package-installed-p 'clojure-mode)
   (package-refresh-contents) (package-install 'clojure-mode)
   )
+;; ============== auto indent =======================
+;; (add-hook 'lisp-mode-hook '(lambda ()
+;;   (local-set-key (kbd "RET") 'newline-and-indent)))
+(global-set-key (kbd "RET") 'newline-and-indent)
+;; ============== auto-close brackets =============
+(electric-pair-mode 1)
