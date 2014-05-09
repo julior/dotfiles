@@ -191,7 +191,7 @@ alias du='du -ch --max-depth=1'
 alias treeacl='tree -A -C -L 2'
 
 alias ssh='TERM=xterm ssh'
-
+alias xopen='xdg-open'
 # 2.3) Text and editor commands
 # alias em='emacs -nw'     # No X11 windows
 # alias eqq='emacs -nw -Q' # No config and no X11
@@ -234,3 +234,6 @@ export GREP_COLOR='1;31' # green for matches
 ## Define any user-specific variables you want here.
 source ~/.bashrc_custom
 
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
