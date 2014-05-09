@@ -322,12 +322,23 @@
 (global-set-key (kbd "C-c d") (kbd "C-a C-SPC C-n M-w C-y"))
 
 ;; ============== scala evaluator ===========================
+;;(global-set-key (kbd "C-e") nil)
 (load "scala-repl.el")
-(global-set-key (kbd "C-e") 'eval-scala)
-
+(add-hook 'scala-mode-hook
+	  '(lambda ()
+	     (local-set-key (kbd "C-e") 'eval-scala)
+	     )
+	  )
+;;(global-set-key (kbd "C-e") 'eval-scala)
+;; (funcall (lambda () (message "hi")) 3)
 ;; ============== scala evaluator ===========================
 (load "clojure-repl.el")
-(global-set-key (kbd "C-.") 'eval-clojure)
+(add-hook 'clojure-mode-hook
+	  '(lambda ()
+	     (local-set-key (kbd "C-e") 'eval-clojure)
+	     )
+	  )
+;;(global-set-key (kbd "C-x e") 'eval-clojure)
 
 ;; ============ clojure ===========================
 (unless (package-installed-p 'clojure-mode)

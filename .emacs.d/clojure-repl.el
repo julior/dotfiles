@@ -13,7 +13,11 @@
   ;;display buffer
   (display-buffer
    (get-buffer "*clojure*")
-   '((display-buffer-reuse-window display-buffer-pop-up-window display-buffer-pop-up-frame)
+   '((display-buffer-reuse-window
+      display-buffer-below-selected
+      display-buffer-use-some-window
+      display-buffer-pop-up-window
+      display-buffer-pop-up-frame)
      (reusable-frames . 0)
      (window-height . 12) (window-width . nil)
      )
