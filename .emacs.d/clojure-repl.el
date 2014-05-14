@@ -1,11 +1,13 @@
 (defun eval-clojure (start end)
   (interactive (list (point) (mark)))
   ;; start clojure if it hasn't started yet
+  (setq cur-buffer (current-buffer))
   (unless (get-process "clojure-repl")
-    (let ((process-connection-type nil))  ; use a pipe
+    (let ((process-connection-type t))  ; use a pipe
       (start-process "clojure-repl" "*clojure*" "java" "-cp" "/opt/clojure-1.6.0.jar" "clojure.main"))
     (set-buffer "*clojure*")
-    (special-mode)
+    (shell-mode)
+    (set-buffer cur-buffer)
     )
   ;; execute
   (process-send-region "clojure-repl" start end)
