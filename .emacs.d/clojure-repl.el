@@ -4,7 +4,7 @@
   (setq cur-buffer (current-buffer))
   (unless (get-process "clojure-repl")
     (let ((process-connection-type t))  ; use a pipe
-      (start-process "clojure-repl" "*clojure*" "java" "-cp" "/opt/clojure-1.6.0.jar" "clojure.main"))
+      (start-process "clojure-repl" "*clojure*" "lein" "repl"))
     (set-buffer "*clojure*")
     (shell-mode)
     (set-buffer cur-buffer)
