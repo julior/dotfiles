@@ -96,6 +96,8 @@
 	(if (= x 8)
 	    (setq tkey "C-M-S-"))
 
+
+
 	;; arrows
 	(define-key key-translation-map (kbd (format "M-[ 1 ; %d A" x)) (kbd (format "%s<up>" tkey)))
 	(define-key key-translation-map (kbd (format "M-[ 1 ; %d B" x)) (kbd (format "%s<down>" tkey)))
@@ -158,6 +160,10 @@
 	))
     )
   )
+
+
+;; ================= disable beep ===================
+(setq ring-bell-function 'ignore)
 
 ;; ---------------------------
 ;; -- JS Mode configuration --
@@ -234,9 +240,12 @@
 (setq fiplr-ignored-globs '((directories (".git" ".svn" "target" ".idea" "build"))
                             (files ("*.jpg" "*.png" "*.zip" "*~"))))
 ;; =============== color themes ===================
+(unless (package-installed-p 'color-theme)
+  (package-refresh-contents) (package-install 'color-theme))
 (require 'color-theme)
 (color-theme-initialize)
 (color-theme-dark-laptop)
+
 ;; (unless (package-installed-p 'color-theme-select)
 ;;   (package-refresh-contents) (package-install 'color-theme-select))
 
@@ -350,3 +359,4 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 ;; ============== auto-close brackets =============
 (electric-pair-mode 1)
+
