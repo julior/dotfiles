@@ -28,26 +28,6 @@
 (setq suggest-key-bindings t)
 (setq vc-follow-symlinks t)
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit autoface-default :strike-through nil :underline nil :slant normal :weight normal :height 120 :width normal :family "monaco"))))
- '(column-marker-1 ((t (:background "red"))))
- '(diff-added ((t (:foreground "cyan"))))
- '(flymake-errline ((((class color) (background light)) (:background "Red"))))
- '(font-lock-comment-face ((((class color) (min-colors 8) (background light)) (:foreground "red"))))
- '(fundamental-mode-default ((t (:inherit default))))
- '(highlight ((((class color) (min-colors 8)) (:background "white" :foreground "magenta"))))
- '(isearch ((((class color) (min-colors 8)) (:background "yellow" :foreground "black"))))
- '(linum ((t (:foreground "black" :weight bold))))
- '(region ((((class color) (min-colors 8)) (:background "white" :foreground "magenta"))))
- '(secondary-selection ((((class color) (min-colors 8)) (:background "gray" :foreground "cyan"))))
- '(show-paren-match ((((class color) (background light)) (:background "black"))))
- '(vertical-border ((t nil)))
- )
-
 ;; ------------
 ;; -- Macros --
 ;; ------------
@@ -201,6 +181,14 @@
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
+;; ========= ergoemacs-mode ===========================
+;; (unless (package-installed-p 'ergoemacs-mode)
+;;   (package-refresh-contents) (package-install 'ergoemacs-mode))
+;; (require 'ergoemacs-mode)
+;; (setq ergoemacs-theme nil) ;; Uses Standard Ergoemacs keyboard theme
+;; (setq ergoemacs-keyboard-layout "us") ;; Assumes QWERTY keyboard layout
+;; (ergoemacs-mode 1)
+
 ;; ========= install and configure move text ====================
 (unless (package-installed-p 'move-text)
   (package-refresh-contents) (package-install 'move-text))
@@ -237,7 +225,7 @@
   (package-refresh-contents) (package-install 'fiplr))
 (require 'fiplr)
 (global-set-key (kbd "C-x f") 'fiplr-find-file)
-(setq fiplr-ignored-globs '((directories (".git" ".svn" "target" ".idea" "build"))
+(setq fiplr-ignored-globs '((directories (".git" ".svn" "target" ".idea" "build" "node_modules"))
                             (files ("*.jpg" "*.png" "*.zip" "*~"))))
 ;; =============== color themes ===================
 (unless (package-installed-p 'color-theme)
@@ -350,9 +338,15 @@
 ;;(global-set-key (kbd "C-x e") 'eval-clojure)
 
 ;; ============ clojure ===========================
-(unless (package-installed-p 'clojure-mode)
-  (package-refresh-contents) (package-install 'clojure-mode)
-  )
+(defvar clj-packages '(better-defaults
+                      projectile
+                      clojure-mode
+                      cider))
+
+(dolist (p clj-packages)
+  (unless (package-installed-p p)
+    (package-install p)))
+
 ;; ============== auto indent =======================
 ;; (add-hook 'lisp-mode-hook '(lambda ()
 ;;   (local-set-key (kbd "RET") 'newline-and-indent)))
@@ -360,3 +354,19 @@
 ;; ============== auto-close brackets =============
 (electric-pair-mode 1)
 
+;; =========== aungularjs yasnippet ============
+(unless (package-installed-p 'angular-snippets)
+  (package-refresh-contents) (package-install 'angular-snippets)
+  )
+;; ============= duplicate lines ================
+(global-set-key "\C-d" "\C-a\C- \C-e\M-w\n\C-y")
+
+;; ================ tabs as spaces =================
+(setq-default indent-tabs-mode nil)
+
+;; =============== haskell ===========================
+(unless (package-installed-p 'haskell-mode)
+  (package-install 'haskell-mode)
+  )
+(add-hook 'haskell-mode-hook 'haskell-indent-mode)
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
