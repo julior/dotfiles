@@ -187,11 +187,14 @@ alias ..='cd ..'
 alias ...='cd ..;cd ..'
 alias md='mkdir'
 alias cl='clear'
-alias du='du -ch --max-depth=1'
+# alias du='du -ch --max-depth=1'
 alias treeacl='tree -A -C -L 2'
 
 alias ssh='TERM=xterm ssh'
 alias xopen='xdg-open'
+alias sshfs='sshfs -o workaround=rename'
+alias less='TERM=xterm-256color less'
+
 # 2.3) Text and editor commands
 # alias em='emacs -nw'     # No X11 windows
 # alias eqq='emacs -nw -Q' # No config and no X11
@@ -221,11 +224,11 @@ export GREP_COLOR='1;31' # green for matches
 # alias node="env NODE_NO_READLINE=1 rlwrap node"
 # alias node_repl="node -e \"require('repl').start({ignoreUndefined: true})\""
 # export NODE_DISABLE_COLORS=1
-# if [ -s ~/.nvm/nvm.sh ]; then
-#    NVM_DIR=~/.nvm
-#    source ~/.nvm/nvm.sh
-#    nvm use v0.10.12 &> /dev/null # silence nvm use; needed for rsync
-# fi
+ if [ -s ~/.nvm/nvm.sh ]; then
+    NVM_DIR=~/.nvm
+    source ~/.nvm/nvm.sh
+    nvm use v0.10.12 &> /dev/null # silence nvm use; needed for rsync
+ fi
 
 ## ------------------------------
 ## -- 3) User-customized code  --
