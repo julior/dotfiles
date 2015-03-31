@@ -7,3 +7,16 @@ source '/opt/google-cloud-sdk/path.bash.inc'
 
 # The next line enables bash completion for gcloud.
 source '/opt/google-cloud-sdk/completion.bash.inc'
+
+mvnq(){
+    q=$1
+    if [ -z $q ]; then
+        echo "usage mvnq <search term>"
+        return 1
+    fi
+    
+    r=$2
+    : ${r:=20}
+    curl -q "http://search.maven.org/solrsearch/select?q=$q%20AND%20p:\"jar\"&rows=$r&wt=json" | python -m json.tool| sed -n '/"id"/{:a /"p"/!{N; ba} ;s/\n//g; s/\([^:]\+\):\([^,]\+\)/\2/g; s/"\|,//g; p}'
+    
+}                                                                                                                                                        
