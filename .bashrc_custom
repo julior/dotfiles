@@ -1,1 +1,8 @@
+alias xclipb='xclip -selection clipboard'
+
+# avoid duplicates..
+export HISTCONTROL=ignoredups:erasedups
+
+# append history entries..
+shopt -s histappend
 
