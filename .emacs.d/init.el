@@ -349,6 +349,15 @@
   (unless (package-installed-p p)
     (package-install p)))
 
+(add-hook 'cider-mode-hook #'eldoc-mode)
+(setq nrepl-log-messages t)
+;; (setq nrepl-hide-special-buffers nil)
+;; =========== company mode ===================
+(unless (package-installed-p 'company)
+  (package-install 'company)
+  )
+(global-company-mode)
+
 ;; ============== auto indent =======================
 ;; (add-hook 'lisp-mode-hook '(lambda ()
 ;;   (local-set-key (kbd "RET") 'newline-and-indent)))
