@@ -281,6 +281,8 @@
 ;; ================ auto-complete ================
 (unless (package-installed-p 'auto-complete)
   (package-refresh-contents) (package-install 'auto-complete))
+;; (require 'auto-complete-config)
+;; (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (unless (package-installed-p 'ac-dabbrev)
   (package-refresh-contents) (package-install 'ac-dabbrev))
 (require 'auto-complete)
