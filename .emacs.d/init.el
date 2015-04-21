@@ -350,6 +350,7 @@
     (package-install p)))
 
 (add-hook 'cider-mode-hook #'eldoc-mode)
+(add-hook 'cider-mode-hook #'paredit-mode)
 (setq nrepl-log-messages t)
 ;; (setq nrepl-hide-special-buffers nil)
 ;; =========== company mode ===================
