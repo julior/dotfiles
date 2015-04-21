@@ -394,3 +394,7 @@
 ;; =================== paredit mode ===================
 (unless (package-installed-p 'paredit)
   (package-install 'paredit))
+
+(global-set-key "\C-\M-y" "\C-\M-t")
+
+
