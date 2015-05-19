@@ -397,4 +397,12 @@
 
 (global-set-key "\C-\M-y" "\C-\M-t")
 
+;; =============== projectile ====================
+(unless (package-installed-p 'projectile)
+  (package-install 'projectile))
+(projectile-global-mode)
 
+;; ============== flx-ido (recommended for projectile)=======================
+
+(unless (package-installed-p 'flx-ido)
+  (package-install 'flx-ido))
