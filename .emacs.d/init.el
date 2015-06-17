@@ -350,9 +350,9 @@
 
 ;; ============ clojure ===========================
 (defvar clj-packages '(better-defaults
-                      projectile
-                      clojure-mode
-                      cider))
+                       projectile
+                       clojure-mode
+                       cider))
 
 (dolist (p clj-packages)
   (unless (package-installed-p p)
@@ -361,6 +361,23 @@
 (add-hook 'cider-mode-hook #'eldoc-mode)
 (add-hook 'clojure-mode-hook #'paredit-mode)
 (setq nrepl-log-messages t)
+(add-hook 'cider-mode-hook
+          '(lambda () (add-hook 'after-save-hook
+                                '(lambda ()
+                                   (if (and (boundp 'cider-mode) cider-mode)
+                                       (cider-namespace-refresh)
+                                     )))))
+
+(defun cider-namespace-refresh ()
+  (interactive)
+  (cider-interactive-eval
+   "(require 'clojure.tools.namespace.repl)
+  (clojure.tools.namespace.repl/refresh)"))
+
+(add-hook 'cider-mode-hook (lambda ()
+                             (define-key clojure-mode-map (kbd "C-c C-r") 'cider-namespace-refresh)
+                             ))
+
 ;; (setq nrepl-hide-special-buffers nil)
 ;; =========== company mode ===================
 (unless (package-installed-p 'company)
@@ -416,6 +433,9 @@
 
 (unless (package-installed-p 'flx-ido)
   (package-install 'flx-ido))
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(setq ido-use-filename-at-point 'guess)
 
 ;; =========== line numbers =====================
 (unless (package-installed-p 'linum)
