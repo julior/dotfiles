@@ -4,18 +4,19 @@
 ;; ---------------------
 ;; -- Global Settings --
 ;; ---------------------
-(add-to-list 'load-path "~/.emacs.d")
-(require 'cl)
-(require 'ido)
-(require 'ffap)
-(require 'uniquify)
-(require 'ansi-color)
-(require 'recentf)
-(require 'linum)
-(require 'smooth-scrolling)
-(require 'whitespace)
-(require 'dired-x)
-(require 'compile)
+(add-to-list 'load-path "~/.emacs.d/custom")
+
+;; ========= scala mode repo =============
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(package-initialize)
+(defvar basic-packages '(cl ido ffap ansi-color recentf linum compile whitespace sws-mode jade-mode))
+
+(dolist (p basic-packages)
+  (unless (package-installed-p p)
+    (package-install p)))
+
 (ido-mode t)
 (menu-bar-mode -1)
 (normal-erase-is-backspace-mode 1)
@@ -148,8 +149,6 @@
 ;; ---------------------------
 ;; -- JS Mode configuration --
 ;; ---------------------------
-(load "js-config.el")
-(add-to-list 'load-path "~/.emacs.d/jade-mode") ;; github.com/brianc/jade-mode
 (require 'sws-mode)
 (require 'jade-mode)
 (add-to-list 'auto-mode-alist '("\\.styl$" . sws-mode))
@@ -173,13 +172,6 @@
   (indent-region (point-min) (point-max) nil))
 ;;  (untabify (point-min) (point-max)))
 (global-set-key [f12] 'iwb)
-
-
-;; ========= scala mode repo =============
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(package-initialize)
 
 ;; ========= ergoemacs-mode ===========================
 ;; (unless (package-installed-p 'ergoemacs-mode)
@@ -243,24 +235,24 @@
   (package-install 'sublime-themes))
 (load-theme 'spolsky t)
 ;; ================= multiweb-mode =============
-;; (unless (package-installed-p 'multi-web-mode)
-;;   (package-refresh-contents) (package-install 'multi-web-mode))
-;; (require 'multi-web-mode)
-;; (setq mweb-default-major-mode 'html-mode)
-;; (setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
-;;                   (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
-;;                   (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
-;; (setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
-;; (multi-web-global-mode 1)
+(unless (package-installed-p 'multi-web-mode)
+  (package-refresh-contents) (package-install 'multi-web-mode))
+(require 'multi-web-mode)
+(setq mweb-default-major-mode 'html-mode)
+(setq mweb-tags '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
+                  (js-mode "<script +\\(type=\"text/javascript\"\\|language=\"javascript\"\\)[^>]*>" "</script>")
+                  (css-mode "<style +type=\"text/css\"[^>]*>" "</style>")))
+(setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
+(multi-web-global-mode 1)
 
 ;; ================ web mode ==================
-(unless (package-installed-p 'web-mode)
-  (package-refresh-contents)
-  (package-install 'web-mode))
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(setq web-mode-enable-auto-pairing t)
-
+;; (unless (package-installed-p 'web-mode)
+;;   (package-refresh-contents)
+;;   (package-install 'web-mode))
+;; (require 'web-mode)
+;;(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+;; (setq web-mode-enable-auto-pairing t)
+;;(set-face-attribute 'web-mode-html-tag-face nil :foreground "#F92672")
 
 ;; ============= nxml ==================
 (unless (package-installed-p 'nxml)
@@ -330,9 +322,6 @@
 ;;   (package-refresh-contents) (package-install 'ensime))
 ;; (require 'ensime)
 ;; (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
-
-;; ============= duplicate line shortcut ====================
-(global-set-key (kbd "C-c d") (kbd "C-a C-SPC C-n M-w C-y"))
 
 ;; ============== scala evaluator ===========================
 ;;(global-set-key (kbd "C-e") nil)
