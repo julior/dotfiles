@@ -227,16 +227,21 @@
 (global-set-key (kbd "C-x f") 'fiplr-find-file)
 (setq fiplr-ignored-globs '((directories (".git" ".svn" "target" ".idea" "build" "node_modules"))
                             (files ("*.jpg" "*.png" "*.zip" "*~"))))
+
 ;; =============== color themes ===================
-(unless (package-installed-p 'color-theme)
-  (package-refresh-contents) (package-install 'color-theme))
-(require 'color-theme)
-(color-theme-initialize)
-(color-theme-dark-laptop)
+;; (unless (package-installed-p 'color-theme)
+;;   (package-refresh-contents) (package-install 'color-theme))
+;; (require 'color-theme)
+;; (color-theme-initialize)
+;; (color-theme-dark-laptop)
 
 ;; (unless (package-installed-p 'color-theme-select)
 ;;   (package-refresh-contents) (package-install 'color-theme-select))
 
+;; ========== emacs 24 extra themes ====================
+(unless (package-installed-p 'sublime-themes)
+  (package-install 'sublime-themes))
+(load-theme 'spolsky t)
 ;; ================= multiweb-mode =============
 ;; (unless (package-installed-p 'multi-web-mode)
 ;;   (package-refresh-contents) (package-install 'multi-web-mode))
