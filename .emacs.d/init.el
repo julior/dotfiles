@@ -233,7 +233,7 @@
 ;; ========== emacs 24 extra themes ====================
 (unless (package-installed-p 'sublime-themes)
   (package-install 'sublime-themes))
-(load-theme 'spolsky t)
+(load-theme 'odersky t)
 ;; ================= multiweb-mode =============
 (unless (package-installed-p 'multi-web-mode)
   (package-refresh-contents) (package-install 'multi-web-mode))
