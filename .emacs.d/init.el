@@ -201,8 +201,8 @@
 
 (require 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key "\C-n" 'mc/mark-next-like-this)
-(global-set-key "\C-b" 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-S-n") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-S-b") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-a") 'mc/mark-all-like-this)
 
 ;; =========== install and configure yasnippet =================
@@ -314,6 +314,15 @@
 (unless (package-installed-p 'markdown-mode)
   (package-refresh-contents) (package-install 'markdown-mode))
 
+;; ================== eveil-matchit ============
+(unless (package-installed-p 'evil-matchit)
+  (package-install 'evil)
+  (package-install 'evil-matchit)
+  )
+(evil-mode 1)
+(global-evil-matchit-mode 1)
+(eval-after-load 'evil
+  (define-key evil-normal-state-map (kbd "M-.") nil))
 ;; ============= auto revert buffers if changed in disk ===============
 (global-auto-revert-mode t)
 
@@ -450,10 +459,6 @@
 
 (global-set-key (kbd "C-c D")  'delete-file-and-buffer)
 
-;; ================== eveil-matchit ============
-(unless (package-installed-p 'evil-matchit)
-  (package-install 'evil)
-  (package-install 'evil-matchit)
-  )
-(evil-mode 1)
-(global-evil-matchit-mode 1)
+;; =================== hide/show blocks ===============
+(add-hook 'hs-minor-mode-hook (lambda ()
+                                (define-key hs-minor-mode-map (kbd "C--") 'hs-toggle-hiding)))
