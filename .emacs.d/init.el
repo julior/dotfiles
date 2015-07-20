@@ -462,3 +462,5 @@
 ;; =================== hide/show blocks ===============
 (add-hook 'hs-minor-mode-hook (lambda ()
                                 (define-key hs-minor-mode-map (kbd "C--") 'hs-toggle-hiding)))
+;; ================== hs enabled ========================
+(add-hook 'prog-mode-hook #'hs-minor-mode)
