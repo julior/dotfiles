@@ -472,5 +472,16 @@
                sgml-skip-tag-forward
                nil))
 
+;; Fix HTML folding
+(dolist (mode '(sgml-mode
+                html-mode
+                html-erb-mode))
+  (add-to-list 'hs-special-modes-alist
+               (list mode
+                     "<!--\\|<[^/>]*[^/]>"
+                     "-->\\|</[^/>]*[^/]>"
+                     "<!--"
+                     'sgml-skip-tag-forward
+                     nil)))
 ;; ================== hs enabled ========================
 (add-hook 'prog-mode-hook #'hs-minor-mode)
