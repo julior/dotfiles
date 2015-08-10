@@ -485,3 +485,11 @@
                      nil)))
 ;; ================== hs enabled ========================
 (add-hook 'prog-mode-hook #'hs-minor-mode)
+
+;;  ================== sql - ident ==================
+
+(unless (package-installed-p 'sql-indent)
+        (package-install 'sql-indent))
+(eval-after-load "sql"
+  '(load-library "sql-indent"))
+
