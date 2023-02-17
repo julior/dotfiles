@@ -11,10 +11,12 @@ if [[ -d /opt/android-sdk-linux ]]; then
 	export PATH="$PATH:$ANDROID_HOME/tools:/opt/android-sdk-linux/platform-tools"
 
 	# The next line updates PATH for the Google Cloud SDK.
-	source '/opt/google-cloud-sdk/path.bash.inc'
-
-	# The next line enables bash completion for gcloud.
-	source '/opt/google-cloud-sdk/completion.bash.inc'
+	if [[ -d /opt/google-cloud-sdk ]] ; then 
+		source '/opt/google-cloud-sdk/path.bash.inc'
+	
+		# The next line enables bash completion for gcloud.
+		source '/opt/google-cloud-sdk/completion.bash.inc'
+	fi
 fi
 
 mvnq(){
@@ -28,4 +30,6 @@ mvnq(){
     : ${r:=20}
     curl -q "http://search.maven.org/solrsearch/select?q=$q%20AND%20p:\"jar\"&rows=$r&wt=json" | python -m json.tool| sed -n '/"id"/{:a /"p"/!{N; ba} ;s/\n//g; s/\([^:]\+\):\([^,]\+\)/\2/g; s/"\|,//g; p}'
     
-}                                                                                                                                                        
+}
+
+
