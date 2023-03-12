@@ -92,7 +92,8 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(terraform-mode org cmake-mode hyperbole)
+   ;; dotspacemacs-additional-packages '(terraform-mode org cmake-mode hyperbole)
+   dotspacemacs-additional-packages '(terraform-mode org hyperbole)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -597,6 +598,8 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (add-hook 'org-mode-hook 'visual-line-mode)
+  ;; (require hyperbole)
+  (defil exec-exercism-cmd "`" "`" "exercism .+" "{M-: (shell-command \"\\& &\") RET}")
 )
 
 
@@ -618,6 +621,9 @@ This function is called at the very end of Spacemacs initialization."
  '(helm-completion-style 'emacs)
  '(ispell-dictionary nil)
  '(lsp-ui-doc-position 'bottom)
+ '(lsp-yaml-schemas
+   '((https://bitbucket\.org/atlassianlabs/atlascode/raw/main/resources/schemas/pipelines-schema\.json .
+                                                                                                       ["/bitbucket-pipelines.yaml"])))
  '(org-babel-load-languages
    '((elixir . t)
      (plantuml . t)
